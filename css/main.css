@@ -40,9 +40,25 @@ img:hover {
     font-style: italic;
 }
 
-.product-info > span {
+.product-title {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.product-title > span {
     color: limegreen;
     font-weight: bold;
+}
+
+.product-sizes {
+    display: flex;
+    gap: 5%;
+    margin-top: 5%;
+}
+
+.size:hover {
+    color: limegreen;
 }
 
 .rendering > p {
