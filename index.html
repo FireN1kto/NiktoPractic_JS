@@ -20,6 +20,8 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <div class="product-info">
             <h1>{{ product }}</h1>
             <p>{{ description }}</p>
+            <p v-if="inStock">(Товар есть на складе)</p>
+            <p v-else>(Товара нет на складе)</p>
         </div>
     </div>
     <div class="moreProducts">
