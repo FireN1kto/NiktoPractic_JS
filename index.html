@@ -23,13 +23,16 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <div class="product-info">
             <div class="product-title">
                 <h1>{{ title }}</h1>
-                <span v-if="onSale">Товар со скидкой</span>
+                <p class="infoSale">{{ sale }}</p>
             </div>
             <div class="rendering">
                 <p v-if="inStock">Товар есть на складе</p>
                 <p v-else :class="{ OutOfStock:!inStock }">Нет в наличии</p>
             </div>
-            <p>{{ description }}</p>
+            <div class="description">
+                <h2>Описание:</h2>
+                <p>{{ description }}</p>
+            </div>
             <div class="detail">
                 <h2>Характеристики:</h2>
                 <ul>

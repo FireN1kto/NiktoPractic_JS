@@ -42,11 +42,10 @@ img:hover {
 
 .product-title {
     display: flex;
-    align-items: center;
-    gap: 5%;
+    flex-direction: column;
 }
 
-.product-title > span {
+.infoSale {
     color: limegreen;
     font-weight: bold;
 }

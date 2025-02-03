@@ -48,6 +48,13 @@ let app = new Vue ({
         },
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity;
+        },
+        sale() {
+            if (this.onSale) {
+                return "Распродажа!" + " " + this.brand + " " + this.product + " " + "по специальной цене!";
+            } else {
+                return "Распродажы нет." + " " + this.brand + " " + this.product + " " + "по стандартной цене.";
+            }
         }
     }
 })
