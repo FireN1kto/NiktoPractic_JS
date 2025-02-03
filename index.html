@@ -22,7 +22,7 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         </div>
         <div class="product-info">
             <div class="product-title">
-                <h1>{{ product }}</h1>
+                <h1>{{ title }}</h1>
                 <span v-if="onSale">Товар со скидкой</span>
             </div>
             <div class="rendering">
@@ -30,15 +30,18 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
                 <p v-else :class="{ OutOfStock:!inStock }">Нет в наличии</p>
             </div>
             <p>{{ description }}</p>
-            <ul>
-                <li v-for="detail in details">{{ detail }}</li>
-            </ul>
+            <div class="detail">
+                <h2>Характеристики:</h2>
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+            </div>
             <div
                 class="color-box"
-                v-for="variant in variants" 
+                v-for="(variant, index) in variants" 
                 :key="variant.variantId"
                 :style="{ backgroundColor:variant.variantColor }"
-                @mouseover="updateProduct(variant.variantImage)"
+                @mouseover="updateProduct(index)"
             >
              </div>
             <div class="product-sizes">

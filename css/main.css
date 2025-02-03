@@ -57,6 +57,11 @@ img:hover {
     margin-top: 5%;
 }
 
+.size {
+    font-size: 15pt;
+    font-weight: bold;
+}
+
 .size:hover {
     color: limegreen;
 }

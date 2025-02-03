@@ -2,11 +2,11 @@ let app = new Vue ({
     el: '#app',
     data: {
         product: "Носки",
+        brand: 'Vue Mastery',
         description: "Пара теплых, пушистых носков.",
-        image: "./img/Green-Socks.jpg",
+        selectedVariant: 0,
         altText: "Пара носков",
         link: "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks",
-        inStock: true,
         inventory: 100,
         onSale: true,
         details: ['80% хлопок', '20% полиэстер', 'Гендерно-нейтральный'],
@@ -14,12 +14,14 @@ let app = new Vue ({
             {
                 variantsId: 2234,
                 variantColor: 'green',
-                variantImage: "./img/Green-Socks.jpg"
+                variantImage: "./img/Green-Socks.jpg",
+                variantQuantity: 10
             },
             {
                 variantsId: 2235,
                 variantColor: 'blue',
-                variantImage: "./img/Blue-Socks.jpg"
+                variantImage: "./img/Blue-Socks.jpg",
+                variantQuantity: 0
             }
         ],
         sizes: ['S','M','L','XL','XXL','XXXL'],
@@ -29,11 +31,23 @@ let app = new Vue ({
         addToCart() {
             this.cart += 1
         },
-        updateProduct(variantImage) {
-            this.image = variantImage
+        updateProduct(index) {
+            this.selectedVariant = index;
+            console.log(index);
         },
         deleteFromCart() {
             this.cart -= 1
+        }
+    },
+    computed: {
+        title() {
+            return this.brand + ' ' + this.product;
+        },
+        image() {
+            return this.variants[this.selectedVariant].variantImage;
+        },
+        inStock() {
+            return this.variants[this.selectedVariant].variantQuantity;
         }
     }
 })
