@@ -62,9 +62,8 @@ img:hover {
 }
 
 .rendering > p {
-    text-decoration: underline;
-    font-size: 15pt;
-    margin-top: 10%;
+    color: red;
+    font-size: 18pt;
 }
 
 .moreProducts {

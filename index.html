@@ -13,6 +13,9 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
 <div id="app">
+    <div class="cart">
+        <p>Корзина: {{ cart }}</p>
+    </div>
     <div class="product">
         <div class="product-image">
             <img :alt="altText" :src="image"/>
@@ -21,6 +24,11 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
             <div class="product-title">
                 <h1>{{ product }}</h1>
                 <span v-if="onSale">Товар со скидкой</span>
+            </div>
+            <div class="rendering">
+                <p v-if="inventory > 10">Товар есть на складе</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Почти распродано!</p>
+                <p v-else>Товара нет на складе</p>
             </div>
             <p>{{ description }}</p>
             <ul>
@@ -32,11 +40,8 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
             <div class="product-sizes">
                 <div class="size" v-for="size in sizes">{{ size }}</div>
             </div>
-            <div class="rendering">
-                <p v-if="inventory > 10">Товар есть на складе</p>
-                <p v-else-if="inventory <= 10 && inventory > 0">Почти распродано!</p>
-                <p v-else>Товара нет на складе</p>
-            </div>
+            <button v-on:click="cart += 1">Добавить в корзину</button>
+        
         </div>
     </div>
     <div class="moreProducts">
