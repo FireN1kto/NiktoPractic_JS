@@ -13,12 +13,12 @@ let app = new Vue ({
         variants: [
             {
                 variantsId: 2234,
-                variantColor: 'зелёные',
+                variantColor: 'green',
                 variantImage: "./img/Green-Socks.jpg"
             },
             {
                 variantsId: 2235,
-                variantColor: 'синие',
+                variantColor: 'blue',
                 variantImage: "./img/Blue-Socks.jpg"
             }
         ],
