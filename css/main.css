@@ -40,6 +40,17 @@ img:hover {
     font-style: italic;
 }
 
+.product-info > span {
+    color: limegreen;
+    font-weight: bold;
+}
+
+.rendering > p {
+    text-decoration: underline;
+    font-size: 15pt;
+    margin-top: 10%;
+}
+
 .moreProducts {
     text-align: center;
 }
