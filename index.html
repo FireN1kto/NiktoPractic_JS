@@ -13,56 +13,7 @@ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
 <div id="app">
-    <div class="cart">
-        <p>Корзина: {{ cart }}</p>
-    </div>
-    <div class="product">
-        <div class="product-image">
-            <img :alt="altText" :src="image"/>
-        </div>
-        <div class="product-info">
-            <div class="product-title">
-                <h1>{{ title }}</h1>
-                <p class="infoSale">{{ sale }}</p>
-            </div>
-            <div class="rendering">
-                <p v-if="inStock">Товар есть на складе</p>
-                <p v-else :class="{ OutOfStock:!inStock }">Нет в наличии</p>
-            </div>
-            <div class="description">
-                <h2>Описание:</h2>
-                <p>{{ description }}</p>
-            </div>
-            <div class="detail">
-                <h2>Характеристики:</h2>
-                <ul>
-                    <li v-for="detail in details">{{ detail }}</li>
-                </ul>
-            </div>
-            <div
-                class="color-box"
-                v-for="(variant, index) in variants" 
-                :key="variant.variantId"
-                :style="{ backgroundColor:variant.variantColor }"
-                @mouseover="updateProduct(index)"
-            >
-             </div>
-            <div class="product-sizes">
-                <div class="size" v-for="size in sizes">{{ size }}</div>
-            </div>
-            <button 
-                v-on:click="addToCart"
-                :disabled="!inStock"
-                :class="{disabledButton: !inStock}"
-            >Добавить в корзину</button>
-            <button v-on:click="deleteFromCart">Удалить из карзины</button>
-            <div class="moreProducts">
-                <a :href="link">Больше подобных товаров</a>
-            </div>
-        
-        </div>
-    </div>
+    <product></product>
 </div>
-
 </body>
 </html>
