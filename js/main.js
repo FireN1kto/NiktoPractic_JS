@@ -19,7 +19,7 @@ Vue.component('product', {
             </div>
             <div class="detail">
                 <h2>Характеристики:</h2>
-                <product-details></product-details>
+                <product-details :details="filterDetails"></product-details>
             </div>
             <p>Доставка: {{ shipping }}</p>
             <div
@@ -114,20 +114,39 @@ Vue.component('product', {
             } else {
                 return "300р."
             }
+        },
+        filterDetails() {
+            if (this.premium) {
+                return ['80% хлопок', '20% полиэстер', 'Гендерно-нейтральный', 'Премиум качество'];
+            } else {
+                return ['80% хлопок', '20% полиэстер', 'Женские', 'Стандратное качество'];
+            }
         }
     }
 })
 
 
 Vue.component('product-details', {
+    props: {
+        details: {
+            type: Array,
+            required: true
+        }
+    },
     template: `
     <ul>
-        <li v-for="detail in details">{{ detail }}</li>
+        <li v-for="detail in details" :key="detail">{{ detail }}</li>
     </ul>
+    `
+})
+
+Vue.component('product-review', {
+    template: `
+    <input>
     `,
     data() {
         return {
-            details: ['80% хлопок', '20% полиэстер', 'Гендерно-нейтральный']
+            name: null
         }
     }
 })
@@ -136,14 +155,15 @@ let app = new Vue ({
     el: '#app',
     data: {
         premium: true,
-        cart: []
+        cart: [],
+        details: []
     },
     methods: {
         updateCart(id) {
             this.cart.push(id);
         },
         deleteCart(id) {
-            this.cart.pop(id)
+            this.cart=this.cart.filter(item => item !== id);
         }
     }
 })
