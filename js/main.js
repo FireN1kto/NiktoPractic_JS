@@ -19,10 +19,9 @@ Vue.component('product', {
             </div>
             <div class="detail">
                 <h2>Характеристики:</h2>
-                <ul>
-                    <li v-for="detail in details">{{ detail }}</li>
-                </ul>
+                <product-details></product-details>
             </div>
+            <p>Доставка: {{ shipping }}</p>
             <div
                 class="color-box"
                 v-for="(variant, index) in variants" 
@@ -65,7 +64,6 @@ Vue.component('product', {
             link: "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks",
             inventory: 100,
             onSale: true,
-            details: ['80% хлопок', '20% полиэстер', 'Гендерно-нейтральный'],
             variants: [
                 {
                     variantsId: 2234,
@@ -112,6 +110,27 @@ Vue.component('product', {
             } else {
                 return "Распродажы нет." + " " + this.brand + " " + this.product + " " + "по стандартной цене.";
             }
+        },
+        shipping() {
+            if (this.premium) {
+                return "Бесплатно";
+            } else {
+                return 2.99
+            }
+        }
+    }
+})
+
+
+Vue.component('product-details', {
+    template: `
+    <ul>
+        <li v-for="detail in details">{{ detail }}</li>
+    </ul>
+    `,
+    data() {
+        return {
+            details: ['80% хлопок', '20% полиэстер', 'Гендерно-нейтральный']
         }
     }
 })
