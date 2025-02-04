@@ -43,9 +43,6 @@ Vue.component('product', {
                 <a :href="link">Больше подобных товаров</a>
             </div>
         </div>
-        <div class="cart">
-        <p>Корзина: {{ cart }}</p>
-        </div>
     </div>
     `,
     props: {
@@ -79,19 +76,19 @@ Vue.component('product', {
                 }
             ],
             sizes: ['S','M','L','XL','XXL','XXXL'],
-            cart: 0
+            cart: []
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantsId);
         },
         updateProduct(index) {
             this.selectedVariant = index;
             console.log(index);
         },
         deleteFromCart() {
-            this.cart -= 1
+            this.$emit('delete-from-cart', this.variants[this.selectedVariant].variantsId);
         }
     },
     computed: {
@@ -115,7 +112,7 @@ Vue.component('product', {
             if (this.premium) {
                 return "Бесплатно";
             } else {
-                return 2.99
+                return "300р."
             }
         }
     }
@@ -138,6 +135,15 @@ Vue.component('product-details', {
 let app = new Vue ({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id);
+        },
+        deleteCart(id) {
+            this.cart.pop(id)
+        }
     }
 })
