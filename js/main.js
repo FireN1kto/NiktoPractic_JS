@@ -43,6 +43,20 @@ Vue.component('product', {
                 <a :href="link">Больше подобных товаров</a>
             </div>
         </div>
+        <div class="Review-Block">
+            <div class="review-div">
+                <h2>Отзывы:</h2>
+                <ul>
+                    <p v-if="!reviews.length">Здесь ещё нет отзывов.</p>
+                    <li v-for="review in reviews">
+                        <p>{{ review.name }}</p>
+                        <p>Оценка: {{ review.rating }}</p>
+                        <p>{{ review.review }}</p>
+                    </li>
+                </ul>
+            </div>
+            <product-review @review-submitted="addReview"></product-review>
+        </div>
     </div>
     `,
     props: {
@@ -76,7 +90,8 @@ Vue.component('product', {
                 }
             ],
             sizes: ['S','M','L','XL','XXL','XXXL'],
-            cart: []
+            cart: [],
+            reviews: []
         }
     },
     methods: {
@@ -89,7 +104,10 @@ Vue.component('product', {
         },
         deleteFromCart() {
             this.$emit('delete-from-cart', this.variants[this.selectedVariant].variantsId);
-        }
+        },
+        addReview(productReview) {
+            this.reviews.push(productReview)
+        }         
     },
     computed: {
         title() {
@@ -184,9 +202,9 @@ Vue.component('product-review', {
                 rating: this.rating
             }
             this.$emit('review-submitted', productReview)
-            this.name = null,
-            this.review = null,
-            this.rating = null
+            this.name = null;
+            this.review = null;
+            this.rating = null;
 
         }
     }

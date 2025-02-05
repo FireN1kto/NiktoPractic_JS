@@ -12,6 +12,7 @@ body {
 
 .product {
     display: flex;
+    flex-wrap: wrap;
     padding: 1rem;
 }
 
@@ -113,11 +114,45 @@ button {
     background-color: #d8d8d8;
 }
 
+.Review-Block {
+    display: flex;
+    margin: 40px;
+}
+
+.review-div {
+    padding: 20px;
+    width: 40%;
+    background-color: darkgray;
+    border: 3px solid black;
+    border-radius: 30px;
+}
+
+.review-div > ul {
+    background-color: wheat;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.review-div > ul > li {
+    list-style-type: none;
+    background-color: azure;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
 .review-form {
     width: 400px;
+    height: 304px;
     padding: 20px;
-    margin: 40px;
+    margin-left: 150px;
     border: 1px solid #d8d8d8;
+    border-radius: 30px;
+}
+
+input[type= submit] {
+    background-color:limegreen;
 }
 
 input {
