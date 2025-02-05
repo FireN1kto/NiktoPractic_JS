@@ -117,25 +117,36 @@ button {
 .Review-Block {
     display: flex;
     margin: 40px;
+    width: 50%;
+}
+
+.Review-Block > div {
+    width: 100%;
 }
 
 .review-div {
     padding: 20px;
-    width: 40%;
+    width: 50%;
     background-color: darkgray;
     border: 3px solid black;
     border-radius: 30px;
 }
 
 .review-div > ul {
-    background-color: wheat;
     border-radius: 10px;
     padding: 15px;
 }
 
+.noneReviews {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: wheat;
+    border: 1px solid black;
+}
+
 .review-div > ul > li {
     list-style-type: none;
-    background-color: azure;
+    background-color: wheat;
     border: 1px solid black;
     border-radius: 10px;
     padding-left: 5px;
@@ -145,7 +156,6 @@ button {
 .review-form {
     width: 400px;
     padding: 20px;
-    margin-left: 150px;
     border: 1px solid #d8d8d8;
     border-radius: 30px;
 }
