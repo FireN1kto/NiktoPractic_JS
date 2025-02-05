@@ -162,13 +162,6 @@ Vue.component('product-details', {
 Vue.component('product-review', {
     template: `
     <form class="review-form" @submit.prevent="onSubmit">
-        <p v-if="errors.length">
-            <b>Пожалуйста, исправьте следующие ошибки:</b>
-            <ul>
-                <li v-for="error in errors">{{ error }}</li>
-            </ul>
-        </p>
-
         <p>
             <label for="name">Имя:</label>
             <input id="name" v-model="name" placeholder="Петя">
@@ -203,6 +196,13 @@ Vue.component('product-review', {
         </div>
         <p>
             <input type="submit" value="Отправить"> 
+        </p>
+
+        <p v-if="errors.length">
+            <b>Пожалуйста, исправьте следующие ошибки:</b>
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
         </p>
     </form>
     `,
