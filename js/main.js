@@ -51,7 +51,8 @@ Vue.component('product', {
                     <li v-for="review in reviews">
                         <p>{{ review.name }}</p>
                         <p>Оценка: {{ review.rating }}</p>
-                        <p>{{ review.review }}</p>
+                        <p>Комментарий: {{ review.review }}</p>
+                        <P>Рекомендовано: {{ review.question }}</p>
                     </li>
                 </ul>
             </div>
@@ -161,51 +162,79 @@ Vue.component('product-details', {
 Vue.component('product-review', {
     template: `
     <form class="review-form" @submit.prevent="onSubmit">
-             <p>
-               <label for="name">Имя:</label>
-               <input id="name" v-model="name" placeholder="Петя">
-             </p>
-            
-             <p>
-               <label for="review">Отзыв:</label>
-               <textarea id="review" v-model="review"></textarea>
-             </p>
-            
-             <p>
-               <label for="rating">Оценка:</label>
-               <select id="rating" v-model.number="rating">
-                 <option>5</option>
-                 <option>4</option>
-                 <option>3</option>
-                 <option>2</option>
-                 <option>1</option>
-               </select>
-             </p>
-            
-             <p>
-               <input type="submit" value="Отправить"> 
-             </p>
-        </form>
+        <p v-if="errors.length">
+            <b>Пожалуйста, исправьте следующие ошибки:</b>
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
+        </p>
+
+        <p>
+            <label for="name">Имя:</label>
+            <input id="name" v-model="name" placeholder="Петя">
+        </p>
+    
+        <p>
+            <label for="review">Отзыв:</label>
+            <textarea id="review" v-model="review"></textarea>
+        </p>
+    
+        <p>
+            <label for="rating">Оценка:</label>
+            <select id="rating" v-model.number="rating">
+                <option>5</option>
+                <option>4</option>
+                <option>3</option>
+                <option>2</option>
+                <option>1</option>
+            </select>
+        </p>
+
+        <p>Вы бы порекомендовали этот продукт?</p>
+        <div class="recomendate">
+            <div>
+                <input type="radio" id="yes" name="contact" value="Да" v-model="question"/>
+                <label for="yes">Да</label>
+            </div>
+            <div>
+                <input type="radio" id="no" name="contact" value="Нет" v-model="question"/>
+                <label for="no">Нет</label>
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Отправить"> 
+        </p>
+    </form>
     `,
     data() {
         return {
             name: null,
             review: null,
-            rating: null
+            rating: null,
+            question: null,
+            errors: []
         }
     },
     methods: {
         onSubmit() {
-            let productReview = {
-                name: this.name,
-                review: this.review,
-                rating: this.rating
+            if(this.name && this.review && this.rating && this.question) {
+                let productReview = {
+                    name: this.name,
+                    review: this.review,
+                    rating: this.rating,
+                    question: this.question
+                }
+                this.$emit('review-submitted', productReview)
+                this.name = null
+                this.review = null
+                this.rating = null
+                this.question = null
+            } else {
+                if(!this.name) this.errors.push("Требуется имя.")
+                if(!this.review) this.errors.push("Требуется отзыв.")
+                if(!this.rating) this.errors.push("Требуется оценка.")
+                if(!this.question) this.errors.push("Требуется рекомендация.")
             }
-            this.$emit('review-submitted', productReview)
-            this.name = null;
-            this.review = null;
-            this.rating = null;
-
         }
     }
 })
